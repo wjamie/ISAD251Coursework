@@ -39,9 +39,10 @@ namespace DrinksAndSnacks.Controllers
         [HttpPost]
         public IActionResult Create_Order(Add_Order add_Order)
         {
-            var createdOrder = _context.Database.ExecuteSqlRaw("EXEC Add_Order @Table_Number, @Product_Name, @Quantity",
+            var createdOrder = _context.Database.ExecuteSqlRaw("EXEC Add_Order @Order_Id, @Table_Number , @Product_Name , @Quantity ",
+               new SqlParameter("@Order_Id", 50),
                new SqlParameter("@Table_Number", add_Order.TableNumber),
-               new SqlParameter("@Product_Name", add_Order.ProductName),
+               new SqlParameter("@Product_Name", add_Order.ProductName.ToString()),
                new SqlParameter("@Quantity", add_Order.Quantity));
           
               
