@@ -28,6 +28,7 @@ namespace DrinksAndSnacks.Controllers
 
 
 
+        //order id list
 
         public IActionResult Index()
         {
@@ -44,6 +45,7 @@ namespace DrinksAndSnacks.Controllers
 
         }
 
+        // find order method when user clicks find order button
 
         [HttpGet]
         public IActionResult Find_Order(Find_Order find_Order)

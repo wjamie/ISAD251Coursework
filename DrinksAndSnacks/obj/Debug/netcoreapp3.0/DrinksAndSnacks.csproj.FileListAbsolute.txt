@@ -162,7 +162,6 @@ C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\bin\Debug\netcoreapp
 C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\bin\Debug\netcoreapp3.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\bin\Debug\netcoreapp3.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\bin\Debug\netcoreapp3.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\DrinksAndSnacks.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\Razor\Views\Products\Create.cshtml.g.cs
 C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\Razor\Views\Products\Delete.cshtml.g.cs
 C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\Razor\Views\Products\Details.cshtml.g.cs
@@ -177,3 +176,10 @@ C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp
 C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\Razor\Views\FindOrder\Index.cshtml.g.cs
 C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\Razor\Views\CancelOrder\Index.cshtml.g.cs
 C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\DrinksAndSnacks.csprojAssemblyReference.cache
+C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\Razor\Views\OrderItems\Create.cshtml.g.cs
+C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\Razor\Views\OrderItems\Delete.cshtml.g.cs
+C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\Razor\Views\OrderItems\Details.cshtml.g.cs
+C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\Razor\Views\OrderItems\Edit.cshtml.g.cs
+C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\Razor\Views\OrderItems\Index.cshtml.g.cs
+C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\bin\Debug\netcoreapp3.0\Yuml.Net.dll
+C:\Users\Walker\Documents\ISAD251Coursework\DrinksAndSnacks\obj\Debug\netcoreapp3.0\DrinksAndSnacks.MvcApplicationPartsAssemblyInfo.cache

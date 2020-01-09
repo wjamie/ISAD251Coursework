@@ -18,11 +18,13 @@ namespace DrinksAndSnacks.Controllers
             _logger = logger;
         }
 
+        //index view
         public IActionResult Index()
         {
             return View();
         }
 
+        // privacy view
         public IActionResult Privacy()
         {
             return View();

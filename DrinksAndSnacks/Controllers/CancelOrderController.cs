@@ -20,6 +20,7 @@ namespace DrinksAndSnacks.Controllers
             _context = context;
         }
 
+        // put order id in order id list box for user to choose
         public IActionResult Index()
         {
 
@@ -35,6 +36,7 @@ namespace DrinksAndSnacks.Controllers
 
         }
 
+        // cancel order when user clicks cancel order
         [HttpPost]
         public IActionResult Cancel_Order(Cancel_Order cancel_Order)
         {

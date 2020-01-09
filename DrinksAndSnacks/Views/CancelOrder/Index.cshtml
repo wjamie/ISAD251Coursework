@@ -1,59 +1,63 @@
 ﻿@model DrinksAndSnacks.Models.Orders;
 
-<div class="container-fluid mt-1 px-1">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card border-dark mb-3">
-                <div class="card-header text-dark" style="background-color:goldenrod; color:black; font-weight:300">Find and Cancel your Order</div>
-                <div class="card-body bg-dark">
-                    <form asp-controller="CancelOrder" asp-action="Cancel_Order" method="post">
-                        <div class="form-group row">
-                            <div class="col-sm-8">
-                                <select class="custom-select mr-sm-2 form-control" name="OrderId" asp-for="OrderId"
-                                        asp-items="(IEnumerable<SelectListItem>)ViewBag.OrderIds">
-                                    <option value="">--Choose your Order Id--</option>
 
-                                </select>
+
+    <div class="container-fluid mt-1 px-1">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card border-dark mb-3">
+                    <div class="card-header text-dark" style="background-color:goldenrod; color:black; font-weight:300">Find and Cancel your Order</div>
+                    <div class="card-body bg-dark">
+                        <!--  cancel order ID LIST   -->
+                        <form asp-controller="CancelOrder" asp-action="Cancel_Order" method="post">
+                            <div class="form-group row">
+                                <div class="col-sm-8">
+                                    <select class="custom-select mr-sm-2 form-control" name="OrderId" asp-for="OrderId"
+                                            asp-items="(IEnumerable<SelectListItem>)ViewBag.OrderIds">
+                                        <option value="">--Choose your Order Id--</option>
+
+                                    </select>
+                                </div>
+
                             </div>
-                           
-                        </div>
 
 
 
+                            <!-- cancel order button    -->
 
-
-                        <div class="col-sm-2">
-                            <button type="submit" class="btn btn-success" name="submit_Order">Cancel Order</button>
-                        </div>
-
-
-
-                        <p>
                             <div class="col-sm-2">
-
-                                <button type="reset" class="btn btn-danger">Do not cancel</button>
+                                <button type="submit" class="btn btn-success" name="submit_Order">Cancel Order</button>
                             </div>
 
 
+                            <!--  do not cancel button   -->
+                            <p>
+                                <div class="col-sm-2">
 
-                    </form>
+                                    <button type="reset" class="btn btn-danger">Do not cancel</button>
+                                </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
-    @{
-        if ((ViewBag.Success != null) && ((int)ViewBag.Success != 0))
-        {
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card bg-success mb-3">
-                        <div class="card-header bg-success text-white">Cancellation Successful</div>
+
+
+                        </form>
+
                     </div>
                 </div>
             </div>
-        }
-    }
+        </div>      <!--   Show confirmation message if done correctly  -->
 
-</div>
+        @{
+            if ((ViewBag.Success != null) && ((int)ViewBag.Success != 0))
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card bg-success mb-3">
+                            <div class="card-header bg-success text-white">Cancellation Successful</div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
 

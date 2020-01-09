@@ -20,6 +20,7 @@ namespace DrinksAndSnacks.Controllers
             _context = context;
         }
 
+        // Put products in product listbox
         public IActionResult Index()
         {
 
@@ -35,6 +36,7 @@ namespace DrinksAndSnacks.Controllers
 
         }
 
+        // Create Order function for when user clicks submit order button
 
         [HttpPost]
         public IActionResult Create_Order(Add_Order add_Order)
