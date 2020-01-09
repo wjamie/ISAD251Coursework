@@ -45,9 +45,10 @@ Also working in Google Chrome
 Also working in Internet Explorer
 ![image](https://user-images.githubusercontent.com/44781092/72076075-daa2e280-32ec-11ea-8bb3-8e306bf07a3f.png)
 
+Youtube Video:
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/um8FOUS1WzQ/0.jpg)](https://www.youtube.com/watch?v=um8FOUS1WzQ)
 
-YouTube Video link: https://www.youtube.com/watch?v=um8FOUS1WzQ
+YouTube Video Alternate link: https://www.youtube.com/watch?v=um8FOUS1WzQ
 
 Web Accessibility Testing
 ![image](https://user-images.githubusercontent.com/44781092/72079168-53586d80-32f2-11ea-8170-19e226398dfa.png)
