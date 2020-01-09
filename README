@@ -1,6 +1,9 @@
 This application can be used by both staff and customers.
 Pages are navigated to by clicking on the buttons on the navigation bar to the left of the screen. 
+
 The Privacy page is located via a link at the bottom of the page.
+
+The website carries a modern dark theme with gold and white accents.
 
 Customers can create an order by clicking on the create order button. Here they can select a product via it's name from a dropdown box
 and select the amount they would like. Customers also select their table number when creating an order.
@@ -8,11 +11,19 @@ and select the amount they would like. Customers also select their table number 
 Customers can also find and cancel their orders by navigating to the cancel order button and clicking this.
 Here they can select their order number and click cancel to cancel their order.
 
+Customers can view their order by navigating to the orders page and finding their order id or the exact time at which they ordered.
+
 Staff can view, edit and delete any orders via clicking on the orders button on the left of the screen.
 Staff can also manually create an order from this page.
 
 Staff can view edit and delete any products via clicking on the products button on the left of the screen.
 Staff can also create an product from this page.
+
+When a product is ordered, the stock level of said product is affected. The products table includes re-order levels so that staff can
+see when they need to order new stock for a product. When they do, they can easily update the stock level for said product by
+using the edit functionality in the products table.
+
+
 
 
 Home Page (Microsoft Edge)
