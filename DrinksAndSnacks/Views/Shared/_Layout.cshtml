@@ -39,7 +39,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
             <i class="fa fa-sort-amount-desc w3-xxlarge"></i>
             <p style="font-family:sans-serif; font-weight: 700">VIEW ORDERS</p>
         </a>
-     
+
         <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" asp-area="" asp-controller="CreateOrder" asp-action="Index">
             <i class="fa fa-pencil w3-xxlarge"></i>
             <p style="font-family:sans-serif; font-weight: 700">CREATE AN ORDER</p>
@@ -48,27 +48,27 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
             <i class="fa fa-trash w3-xxlarge"></i>
             <p style="font-family:sans-serif; font-weight: 700">FIND AND CANCEL ORDER</p>
         </a>
-        <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" asp-area="" asp-controller="FindOrder" asp-action="Index">
+        <!--  <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" asp-area="" asp-controller="FindOrder" asp-action="Index">
             <i class="fa fa-pencil w3-xxlarge"></i>
             <p style="font-family:sans-serif; font-weight: 700">FIND YOUR ORDER</p>
         </a>
-
+        -->
     </nav>
-    
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted  bg-dark ">
-        <div class="container  text-light">
-            &copy; 2019 - DrinksAndSnacks - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
-</body>
-</html>
+
+        <footer class="border-top footer text-muted  bg-dark ">
+            <div class="container  text-light">
+                &copy; 2019 - DrinksAndSnacks - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
+    </html>
