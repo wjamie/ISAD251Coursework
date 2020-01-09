@@ -1,0 +1,294 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Products](
+	[Product_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Product_Name] [varchar](30) NULL,
+	[Category] [varchar](20) NOT NULL,
+	[Price] [decimal](6, 2) NULL,
+	[Re_Order_Level] [int] NOT NULL,
+	[Stock_Level] [int] NOT NULL,
+ CONSTRAINT [pk_Products] PRIMARY KEY CLUSTERED 
+(
+	[Product_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Orders](
+	[Order_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Table_Number] [int] NOT NULL,
+	[Order_Time] [smalldatetime] NOT NULL,
+ CONSTRAINT [pk_Orders] PRIMARY KEY CLUSTERED 
+(
+	[Order_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
+
+
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Order_Items](
+	[Order_Id] [int] NOT NULL,
+	[Product_Id] [int] NOT NULL,
+	[Quantity] [int] NOT NULL,
+ CONSTRAINT [pk_Order_Items] PRIMARY KEY CLUSTERED 
+(
+	[Order_Id] ASC,
+	[Product_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TRIGGER [dbo].[ChangeStock] ON [dbo].[Order_Items]
+AFTER INSERT
+AS
+BEGIN
+    UPDATE Products
+    SET Products.Stock_Level = Products.Stock_Level - inserted.Quantity
+    FROM inserted
+    WHERE Products.Product_Id = inserted.Product_Id
+END;
+GO
+ALTER TABLE [dbo].[Order_Items] ENABLE TRIGGER [ChangeStock]
+GO
+
+
+
+
+
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[Add_Order](@Order_Id int output, @Table_Number as int,  @Product_Name as varchar(30), @Quantity as int) AS
+
+
+BEGIN
+
+DECLARE @thesmalldatetime smalldatetime;
+
+
+
+DECLARE @Order_Time datetime;
+SET @Order_Time = GETDATE();
+
+SET @thesmalldatetime = @Order_Time;
+
+
+ DECLARE @Product_Id AS INT
+
+ SET @Product_Id = (SELECT Product_Id FROM [Products] WHERE Product_Name = @Product_Name)
+
+    BEGIN TRANSACTION
+        DECLARE @Error NVARCHAR(Max);
+        
+        
+        BEGIN TRY
+        
+  
+
+         INSERT INTO dbo.Orders (Table_Number, Order_Time)
+            VALUES (@Table_Number, @thesmalldatetime);
+
+             SET @Order_Id = SCOPE_IDENTITY();
+
+         INSERT INTO dbo.Order_Items (Order_Id, Product_Id, Quantity)
+            VALUES (@Order_Id, @Product_Id, @Quantity);
+
+            IF @@TRANCOUNT > 0 COMMIT;
+        END TRY
+        BEGIN CATCH
+            SET @Error = 'An error was encountered : Adding an Order could not happen';
+            IF @@TRANCOUNT > 0
+                ROLLBACK TRANSACTION;
+            RAISERROR(@Error, 1, 0);
+        END CATCH; 
+END;
+GO
+
+
+
+
+
+
+
+
+CREATE PROCEDURE [dbo].[Add_To_Order](@Order_Id as int, @Product_Id as int, @Quantity as int) AS
+BEGIN
+
+    BEGIN TRANSACTION
+        DECLARE @Error NVARCHAR(Max);
+
+        BEGIN TRY
+        
+           INSERT INTO dbo.Order_Items (Order_Id, Product_Id, Quantity)
+            VALUES (@Order_Id, @Product_Id, @Quantity);
+
+            IF @@TRANCOUNT > 0 COMMIT;
+        END TRY
+        BEGIN CATCH
+            SET @Error = 'An error was encountered : Editing Order could not happen';
+            IF @@TRANCOUNT > 0
+                ROLLBACK TRANSACTION;
+            RAISERROR(@Error, 1, 0);
+        END CATCH; 
+END;
+
+
+
+
+
+
+
+CREATE PROCEDURE [dbo].[Cancel_Order](@Order_Id as int) AS
+BEGIN
+
+    BEGIN TRANSACTION
+        DECLARE @Error NVARCHAR(Max);
+
+        BEGIN TRY
+        
+           DELETE FROM dbo.Orders 
+            WHERE Order_Id = @Order_Id
+            
+
+          DELETE FROM dbo.Order_Items 
+            WHERE Order_Id = @Order_Id
+        
+
+            IF @@TRANCOUNT > 0 COMMIT;
+        END TRY
+        BEGIN CATCH
+            SET @Error = 'An error was encountered : Cancel could not happen';
+            IF @@TRANCOUNT > 0
+                ROLLBACK TRANSACTION;
+            RAISERROR(@Error, 1, 0);
+        END CATCH; 
+END;
+
+
+
+
+
+
+
+
+
+CREATE PROCEDURE [dbo].[Delete_Product](@ProductId as INT) AS
+BEGIN
+
+    BEGIN TRANSACTION
+        DECLARE @Error NVARCHAR(Max);
+
+        BEGIN TRY
+        
+            DELETE FROM Products
+            WHERE Product_Id = @ProductId;
+
+            IF @@TRANCOUNT > 0 COMMIT;
+        END TRY
+        BEGIN CATCH
+            SET @Error = 'An error was encountered : Delete could not happen';
+            IF @@TRANCOUNT > 0
+                ROLLBACK TRANSACTION;
+            RAISERROR(@Error, 1, 0);
+        END CATCH; 
+END;
+
+
+
+
+
+CREATE PROCEDURE Find_Order(@Order_Id as int) AS
+BEGIN 
+    SELECT Orders.Order_Id, Products.Product_Name, Order_Items.Quantity, 
+Orders.Order_Time,  Orders.Table_Number,
+sum(Order_Items.Quantity * Products.Price) AS Total_Cost
+ FROM Order_Items, Products, Orders
+ WHERE Orders.Order_Id = Order_Items.Order_Id
+ AND Order_Items.Product_Id = Products.Product_Id
+ AND @Order_Id = Orders.Order_Id
+
+GROUP BY Orders.Order_Id, Products.Product_Name, Order_Items.Quantity, Orders.Order_Time, Orders.Table_Number
+
+END;
+
+
+
+
+
+CREATE PROCEDURE [dbo].[Find_Product](@ProductID as INT) AS
+BEGIN 
+    SELECT Product_Name, Category, Price, Re_Order_Level, Stock_Level
+    FROM Products
+    WHERE Product_Id = @ProductID
+END;
+
+
+
+
+
+
+
+CREATE VIEW [dbo].[All_Item_Orders] AS
+SELECT Orders.Order_Id, Products.Product_Name, Order_Items.Quantity, 
+Orders.Order_Time,  Orders.Table_Number,
+sum(Order_Items.Quantity * Products.Price) AS Cost
+ FROM Order_Items, Products, Orders
+ WHERE Orders.Order_Id = Order_Items.Order_Id
+ AND Order_Items.Product_Id = Products.Product_Id
+
+GROUP BY Orders.Order_Id, Products.Product_Name, Order_Items.Quantity, Orders.Order_Time, Orders.Table_Number
+
+
+
+CREATE VIEW [dbo].[SalesPerCustomer] AS
+SELECT  Customers.CustomerId,  Orders.OrderId, sum(OrderDetails.Quantity * Products.Price) as TotalCost
+
+ FROM OrderDetails, Products, Orders, Customers
+ WHERE orders.OrderId = OrderDetails.OrderId
+ AND OrderDetails.ProductId = Products.ProductId
+ AND Customers.CustomerId = Orders.CustomerId
+ GROUP BY  Customers.CustomerId, orders.OrderId;
+
+
+CREATE VIEW [dbo].[ProductsCustomer] AS
+SELECT Products.Product_Name, Products.Price, Products.Category
+ FROM Order_Items, Products, Orders
+
+GROUP BY Category, Products.Product_Id, Product_Name, Products.Price
+
+
+
+
+CREATE VIEW dbo.Sales AS
+SELECT sum(OrderDetails.Quantity * Products.Price) as TotalCost,
+ Orders.OrderId, Customers.CustomerId
+ FROM OrderDetails, Products, Orders, Customers
+ WHERE orders.OrderId = OrderDetails.OrderId
+ AND OrderDetails.ProductId = Products.ProductId
+ AND Customers.CustomerId = Orders.CustomerId
+ GROUP BY orders.OrderId, Customers.CustomerId;
