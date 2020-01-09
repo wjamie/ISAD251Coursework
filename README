@@ -1,1 +1,16 @@
-Readme
+This application can be used by both staff and customers.
+Pages are navigated to by clicking on the buttons on the navigation bar to the left of the screen. 
+The Privacy page is located via a link at the bottom of the page.
+
+Customers can create an order by clicking on the create order button. Here they can select a product via it's name from a dropdown box
+and select the amount they would like. Customers also select their table number when creating an order.
+
+Customers can also find and cancel their orders by navigating to the cancel order button and clicking this.
+Here they can select their order number and click cancel to cancel their order.
+
+Staff can view, edit and delete any orders via clicking on the orders button on the left of the screen.
+Staff can also manually create an order from this page.
+
+Staff can view edit and delete any products via clicking on the products button on the left of the screen.
+Staff can also create an product from this page.
+
