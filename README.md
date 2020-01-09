@@ -1,4 +1,4 @@
-Github Prototype Page
+# Github Prototype Page
 
 This application can be used by both staff and customers.
 Pages are navigated to by clicking on the buttons on the navigation bar to the left of the screen. 
@@ -44,6 +44,8 @@ Also working in Google Chrome
 
 Also working in Internet Explorer
 ![image](https://user-images.githubusercontent.com/44781092/72076075-daa2e280-32ec-11ea-8bb3-8e306bf07a3f.png)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/um8FOUS1WzQ/0.jpg)](https://www.youtube.com/watch?v=um8FOUS1WzQ)
 
 YouTube Video link: https://www.youtube.com/watch?v=um8FOUS1WzQ
 
