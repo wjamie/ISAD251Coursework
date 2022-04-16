@@ -1,4 +1,4 @@
-# Github Prototype Page
+# Full Stack Restaurant Management System
 
 This application can be used by both staff and customers.
 Pages are navigated to by clicking on the buttons on the navigation bar to the left of the screen. 
